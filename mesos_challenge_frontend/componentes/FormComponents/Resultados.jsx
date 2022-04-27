@@ -5,7 +5,7 @@ const Resultados = ({formik}) => {
     const fecha = split? `${split[2]}-${split[1]}-${split[0]}` : null
     const { data, error } = useSWR(formik?`https://mindicador.cl/api/uf/${fecha}`: null, fetcher)
     if (error) return <div>failed to load</div>
-    if (!data) return <div>loading...</div>
+    if (!data) return <div></div>
    
    
    
