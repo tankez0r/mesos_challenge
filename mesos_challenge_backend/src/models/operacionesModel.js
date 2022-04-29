@@ -1,15 +1,13 @@
-import sequelize from 'sequelize';
 import { conChain } from '../database/database';
-import userModel from './userModel';
+import sequelize from 'sequelize';
 
 const operacionesModel = conChain.define('operaciones',
     {
-        id: {
-            type: sequelize.INTEGER,
-            primaryKey: true
-        },
-        fechaOrigen: {
-            type: sequelize.TEXT
+        oid: {
+            type: sequelize.STRING,
+            primaryKey: true,
+            allowNull: false
+
         },
         fechaConversion: {
             type: sequelize.TEXT
@@ -17,14 +15,10 @@ const operacionesModel = conChain.define('operaciones',
         valorMoneda: {
             type: sequelize.STRING
         },
-        userId: {
-            type: sequelize.INTEGER
-        }
     },
     {
-        timestamps: false
+        timestamps: true
     }
 );
-operacionesModel.belongsTo(userModel, { as: 'usuario', foreignKey: 'userId', sourceKey: 'id', onDelete: 'cascade' });
-userModel.sync();
+
 export default operacionesModel;
